@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Your Rowcraft data | Rowcraft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F7F5;--ink:#1B2430;--ink-soft:#5B6570;--grid:#D8DBD9;--teal:#2F6F5E}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 'IBM Plex Sans',sans-serif}
+a{color:inherit}.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--grid);padding:18px 0}
+.brand{font:600 18px 'IBM Plex Mono',monospace;text-decoration:none}
+main{padding:72px 0}.card{padding:32px;background:#fff;border:1px solid var(--grid)}
+.tag{font:12px 'IBM Plex Mono',monospace;color:var(--teal)}
+h1{font-size:clamp(30px,5vw,42px);line-height:1.15;margin:12px 0}
+p{color:var(--ink-soft)}
+.button{display:inline-block;margin-top:12px;padding:13px 20px;background:var(--teal);color:white;text-decoration:none;font:500 14px 'IBM Plex Mono',monospace;border-radius:2px}
+.button[hidden]{display:none}
+[aria-live]{min-height:24px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="/">Rowcraft</a></div></header>
+<main class="wrap">
+  <div class="card">
+    <div class="tag">ROWCRAFT / DATA DELIVERY</div>
+    <h1>Your ICO data file</h1>
+    <p id="status" aria-live="polite">Checking your payment with Stripe…</p>
+    <p>The CSV is delivered in a ZIP archive. We’ll also email the archive to the address used at checkout.</p>
+    <a id="download" class="button" hidden>Download the CSV archive</a>
+    <p><a href="/">Back to Rowcraft</a></p>
+  </div>
+</main>
+<script type="module">
+const status = document.querySelector("#status");
+const download = document.querySelector("#download");
+const sessionId = new URLSearchParams(location.search).get("session_id");
+
+if (!sessionId) {
+  status.textContent = "We couldn’t find the checkout reference. If your payment went through, contact hello@rowcraftdata.com.";
+} else {
+  try {
+    const response = await fetch(`/api/order-status?session_id=${encodeURIComponent(sessionId)}`);
+    const result = await response.json();
+    if (!response.ok || !result.paid) {
+      throw new Error(result.error || "Payment has not been confirmed yet.");
+    }
+    download.href = `/api/download-product?session_id=${encodeURIComponent(sessionId)}`;
+    download.hidden = false;
+    status.textContent = "Payment confirmed. Your download is ready, and the same ZIP is being sent to your checkout email.";
+  } catch (error) {
+    status.textContent = `${error.message} If you completed payment, refresh this page or contact hello@rowcraftdata.com.`;
+  }
+}
+</script>
+</body>
+</html>

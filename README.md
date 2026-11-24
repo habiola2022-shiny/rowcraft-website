@@ -1,6 +1,6 @@
-# Rowcraft website — ICO dataset version 1
+# Rowcraft website
 
-This is an editable static website draft. Open the folder in VS Code (or another IDE) and edit `index.html` and `demo.html` directly.
+Rowcraft's public-data website, deployed on Netlify. The ICO explorer is hosted separately on Streamlit and embedded in `demo.html`.
 
 ## Preview locally
 
@@ -16,19 +16,27 @@ Then visit http://localhost:8000.
 
 - `index.html` — Rowcraft homepage and ICO CSV collection offer.
 - `demo.html` — embedded Streamlit ICO explorer and CSV collection offer.
+- `purchase-success.html` — post-checkout download and order status.
 
-## Current limitations — important
+## ICO CSV checkout and delivery
 
-- The £4.99 price is displayed as proposed pricing. No payment provider, checkout or automated file delivery is connected. The buttons currently open an email enquiry so visitors are not led to believe they can pay online yet.
-- The CSV download itself is not included in this website folder. Add it only after confirming the exact files, compilation date, source terms and the handling of any personal data.
-- The approximate record count and source description should be checked against the actual release before launch.
-- The ICO app is embedded from the existing Streamlit URL. It remains hosted separately.
-- The website uses Google Fonts, so the fonts require an internet connection; fallback fonts will be used if unavailable.
+Checkout uses Stripe Checkout. After a successful payment the buyer can download the ZIP from the success page; a Stripe webhook sends the same archive to the checkout email using Resend. The ZIP is held in private Netlify Blobs, not in this public repository.
 
-## Before publishing
+Production Netlify Functions require these environment variables:
 
-1. Test both pages on desktop and mobile.
-2. Verify the ICO source terms and data protection position for the exact files being redistributed.
-3. Confirm the release date and record count.
-4. Implement and test payment plus secure download delivery before changing the enquiry links into purchase buttons.
-5. Keep the current live Netlify site unchanged until this draft has been reviewed.
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+- `RESEND_API_KEY`
+- `RESEND_FROM_EMAIL`
+- `SITE_URL`
+- `PRODUCT_BLOB_STORE`
+- `PRODUCT_BLOB_KEY`
+- `PRODUCT_RELEASE_DATE`
+
+Set secret values only in Netlify's environment-variable settings; never put them in Git or chat. Configure the Stripe webhook at `/api/stripe-webhook` for `checkout.session.completed` and `checkout.session.async_payment_succeeded`. Enable the payment methods supported by the Stripe account in its payment-method settings; methods shown at checkout depend on account configuration, buyer location and device.
+
+The current release is the ZIP named `ico-data-protection-decisions-2026-11-24.zip` in the `rowcraft-products` Blob store. To replace it, generate and review the release with the `rowcraft-data` exporter, upload the new ZIP privately to Netlify Blobs, then update the matching product key and release date in Netlify. Do not commit the CSV or ZIP to this public repository.
+
+Before accepting live payments, verify the release source terms and data-protection position, confirm the record count and release date, configure any applicable tax settings, and test checkout, download and email delivery with Stripe test mode.
+
+The website uses Google Fonts, so the fonts require an internet connection; fallback fonts will be used if unavailable.
