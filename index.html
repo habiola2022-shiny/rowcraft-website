@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICO Data Protection Decisions: Search Organisations and Cases | Rowcraft</title>
+<meta name="description" content="Explore UK ICO data protection complaint decisions by organisation, sector and outcome. Search 106,000+ published cases and export filtered CSV records with Rowcraft.">
+<meta property="og:title" content="ICO Data Protection Decisions | Rowcraft">
+<meta property="og:description" content="Search ICO data protection complaints, benchmark organisations and export case records.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F7F5;
+    --paper-alt:#EFEFEC;
+    --ink:#1B2430;
+    --ink-soft:#5B6570;
+    --grid:#D8DBD9;
+    --teal:#2F6F5E;
+    --teal-soft:#E4EEEB;
+    --ref-blue:#4A63A8;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,247,245,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--grid);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px; max-width:1040px; margin:0 auto;
+  }
+  .brand{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600; font-size:18px; letter-spacing:-0.02em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand-dot{width:8px; height:8px; background:var(--teal); border-radius:1px; display:inline-block;}
+  .nav-links{display:flex; gap:28px; font-size:14px;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--ink);}
+  .nav-cta{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500;
+    background:var(--ink); color:var(--paper); padding:9px 16px; border-radius:var(--radius);
+    text-decoration:none; white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--teal);}
+  @media (max-width:720px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{padding:72px 0 64px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
+  }
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink-soft);
+    letter-spacing:0.02em; margin-bottom:18px; display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{content:"fx"; background:var(--paper-alt); border:1px solid var(--grid); padding:2px 6px; border-radius:var(--radius); font-size:11px;}
+  h1{
+    font-size:44px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 20px;
+    font-weight:600;
+  }
+  h1 .accent{color:var(--teal);}
+  .lede{font-size:17px; color:var(--ink-soft); max-width:46ch; margin:0 0 32px;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:14px;
+    background:var(--teal); color:#fff; padding:13px 22px; border-radius:var(--radius);
+    text-decoration:none; display:inline-block; transition:background .15s, transform .15s;
+  }
+  .btn-primary:hover{background:#255a4c; transform:translateY(-1px);}
+  .btn-secondary{
+    font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:14px;
+    color:var(--ink); padding:13px 22px; border-radius:var(--radius);
+    text-decoration:none; border:1px solid var(--grid); display:inline-block;
+    transition:border-color .15s, background .15s;
+  }
+  .btn-secondary:hover{border-color:var(--ink); background:var(--paper-alt);}
+
+  /* GRID SIGNATURE ANIMATION */
+  .signature{
+    border:1px solid var(--grid); border-radius:var(--radius); background:#fff;
+    padding:16px; position:relative;
+  }
+  .sig-label{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; margin-bottom:10px;
+  }
+  .cellgrid{
+    display:grid; grid-template-columns:repeat(6, 1fr); gap:4px;
+  }
+  .cell{
+    aspect-ratio:1.3; border-radius:1px; background:var(--paper-alt);
+    border:1px solid var(--grid);
+    animation:settle 2.6s ease-in-out infinite;
+  }
+  .cell.hdr{background:var(--ink); border-color:var(--ink);}
+  @keyframes settle{
+    0%{background:#DADFD9;}
+    35%{background:var(--teal-soft);}
+    60%{background:var(--teal-soft);}
+    100%{background:#DADFD9;}
+  }
+  .cell:nth-child(1){animation-delay:0.0s;}
+  .cell:nth-child(2){animation-delay:0.1s;}
+  .cell:nth-child(3){animation-delay:0.2s;}
+  .cell:nth-child(4){animation-delay:0.3s;}
+  .cell:nth-child(5){animation-delay:0.4s;}
+  .cell:nth-child(6){animation-delay:0.5s;}
+  .cell:nth-child(7){animation-delay:0.15s;}
+  .cell:nth-child(8){animation-delay:0.25s;}
+  .cell:nth-child(9){animation-delay:0.35s;}
+  .cell:nth-child(10){animation-delay:0.45s;}
+  .cell:nth-child(11){animation-delay:0.55s;}
+  .cell:nth-child(12){animation-delay:0.65s;}
+  .cell:nth-child(13){animation-delay:0.3s;}
+  .cell:nth-child(14){animation-delay:0.4s;}
+  .cell:nth-child(15){animation-delay:0.5s;}
+  .cell:nth-child(16){animation-delay:0.6s;}
+  .cell:nth-child(17){animation-delay:0.7s;}
+  .cell:nth-child(18){animation-delay:0.8s;}
+  .sig-caption{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); margin-top:10px;}
+
+  /* SECTION SHARED */
+  section{padding:64px 0; border-top:1px solid var(--grid);}
+  .section-head{margin-bottom:36px;}
+  .section-tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--teal); margin-bottom:8px;}
+  h2{font-size:28px; margin:0; letter-spacing:-0.01em; font-weight:600;}
+
+  /* SERVICES AS CELL ROWS */
+  .row{
+    display:grid; grid-template-columns:64px 1fr; gap:20px;
+    border-bottom:1px solid var(--grid); padding:22px 0; align-items:start;
+  }
+  .row:last-child{border-bottom:none;}
+  .cellref{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink-soft);
+    background:var(--paper-alt); border:1px solid var(--grid); border-radius:var(--radius);
+    padding:4px 8px; text-align:center; height:fit-content;
+  }
+  .row h3{font-size:17px; margin:0 0 6px; font-weight:600;}
+  .row p{margin:0; color:var(--ink-soft); font-size:15px; max-width:56ch;}
+
+  /* PROCESS */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:720px){ .steps{grid-template-columns:1fr;} }
+  .step{border:1px solid var(--grid); border-radius:var(--radius); padding:22px; background:#fff;}
+  .step-num{font-family:'IBM Plex Mono',monospace; color:var(--ref-blue); font-size:13px; margin-bottom:10px;}
+  .step h3{font-size:16px; margin:0 0 8px; font-weight:600;}
+  .step p{margin:0; color:var(--ink-soft); font-size:14px;}
+
+  /* WHO ITS FOR */
+  .fit-list{list-style:none; padding:0; margin:0; display:grid; gap:12px;}
+  .fit-list li{display:flex; gap:12px; align-items:flex-start; font-size:15px; color:var(--ink-soft);}
+  .fit-list li::before{content:"✓"; color:var(--teal); font-family:'IBM Plex Mono',monospace; font-weight:600; flex-shrink:0;}
+
+  /* PRICING */
+  .price-card{
+    border:1px solid var(--grid); border-radius:var(--radius); padding:28px; background:#fff;
+    display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center;
+  }
+  @media (max-width:600px){ .price-card{grid-template-columns:1fr;} }
+  .price-card h3{margin:0 0 6px; font-size:16px;}
+  .price-card p{margin:0; color:var(--ink-soft); font-size:14px; max-width:44ch;}
+  .price-tag{font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:600; white-space:nowrap;}
+  .price-tag span{font-size:13px; color:var(--ink-soft); font-weight:400;}
+
+  /* BOOKING */
+  .book-panel{
+    border:1px solid var(--grid); border-radius:var(--radius); background:#fff; padding:36px; text-align:center;
+  }
+  .book-panel h2{margin-bottom:10px;}
+  .book-panel p{color:var(--ink-soft); max-width:46ch; margin:0 auto 26px;}
+  .calendly-note{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft);
+    background:var(--paper-alt); border:1px dashed var(--grid); border-radius:var(--radius);
+    padding:12px; margin-top:20px; text-align:left;
+  }
+
+  footer{border-top:1px solid var(--grid); padding:32px 0; font-size:13px; color:var(--ink-soft);}
+  .footer-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand"><span class="brand-dot"></span>Rowcraft</div>
+    <div class="nav-links">
+      <a href="#ico-dataset">ICO decisions</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#future-products">More from Rowcraft</a>
+      <a href="demo.html">Explore data</a>
+    </div>
+    <a href="demo.html" class="nav-cta">Explore the ICO data</a>
+  </nav>
+</header>
+
+<section class="hero" style="border-top:none;">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">ICO DATA PROTECTION DECISIONS</div>
+      <h1>Explore UK ICO <span class="accent">data protection decisions.</span></h1>
+      <p class="lede">Search published UK data protection complaints by organisation, sector and outcome. Compare organisations, review closure times and export the cases you select.</p>
+      <div class="cta-row">
+        <a href="demo.html" class="btn-primary">Explore decision data →</a>
+        <a href="#ico-dataset" class="btn-secondary">Discover the dataset</a>
+      </div>
+    </div>
+    <div class="signature">
+      <div class="sig-label"><span>raw_data → insight</span><span>ROWCRAFT / PRODUCT</span></div>
+      <div class="cellgrid">
+        <div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      </div>
+      <div class="sig-caption">// organised data — ready to explore and use</div>
+    </div>
+  </div>
+</section>
+
+<section id="ico-dataset">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">THE ICO DECISION DATA</div>
+      <h2>Search online. Export the cases you need.</h2>
+      <p class="mono" style="margin:10px 0 0; font-size:13px; color:var(--ink-soft);">Free access to the published complaint records</p>
+    </div>
+    <div class="row">
+      <div class="cellref">01</div>
+      <div>
+        <h3>Free interactive data explorer</h3>
+        <p>Search an organisation to bring up every matching published case, or filter by sector, outcome and date to compare complaint patterns.</p>
+        <p style="margin-top:12px;"><a href="demo.html">Open the interactive ICO explorer →</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cellref">02</div>
+      <div>
+        <h3>Filtered CSV export</h3>
+        <p>Export the complaint cases matching your current filters, including organisation, sector, complaint reason, outcome and closure time.</p>
+        <p style="margin-top:10px;"><strong>Important:</strong> A complaint is not proof of wrongdoing. Many cases end with no breach found. Downloaded figures describe the ICO's published case outcomes only.</p>
+      </div>
+    </div>
+    <div class="price-card" style="margin-top:24px;">
+      <div>
+        <h3>Explore and export ICO complaint cases</h3>
+        <p>Free interactive access · filtered CSV download · organisation and sector comparisons.</p>
+        <p style="margin-top:10px;">The live explorer contains over 106,000 published cases, subject to changes in the ICO's source data.</p>
+        <a class="btn-primary" style="margin-top:18px;" href="demo.html">Open the free explorer →</a>
+      </div>
+      <div class="price-tag">Free</div>
+    </div>
+    <p class="note" style="margin-top:16px;">Dataset size and contents may change as the <a href="https://ico.org.uk/media2/xweidxt3/dp-complaints-q4-2025-26.csv" target="_blank" rel="noopener noreferrer">ICO publishes updates</a>. The app identifies the source, and reuse is subject to the source terms and any restrictions relating to personal data.</p>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">HOW IT WORKS</div>
+      <h2>A straightforward way to explore public complaint data</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Explore the cases</h3>
+        <p>Search by organisation and show every matching complaint case, or narrow the results by sector, outcome and completion date.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Export matching cases</h3>
+        <p>Download the currently selected complaint records as a CSV for further analysis.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Build on the data</h3>
+        <p>Future Rowcraft products will add company information, Companies House data and focused company or industry reports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fit">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">WHO MAY FIND IT USEFUL</div>
+      <h2>For people who work with company and regulatory information</h2>
+    </div>
+    <ul class="fit-list">
+      <li>Researchers and analysts exploring regulatory complaint patterns</li>
+      <li>Consultants and professional services teams carrying out company or sector research</li>
+      <li>Businesses and corporate teams looking for a convenient way to access the published records</li>
+      <li>Anyone who wants to explore the ICO complaint records or export matching CSV cases</li>
+    </ul>
+  </div>
+</section>
+
+<section id="future-products">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">THE ROWCRAFT ROADMAP</div>
+      <h2>More ways to work with data</h2>
+      <p class="mono" style="margin:10px 0 0; font-size:13px; color:var(--ink-soft);">Additional products planned beyond the ICO data</p>
+    </div>
+    <div class="price-card" style="margin-bottom:16px;">
+      <div><h3>Companies House integration</h3><p>Bring relevant company information alongside public datasets to support deeper company-level research.</p></div>
+      <div class="price-tag">Planned</div>
+    </div>
+    <div class="price-card">
+      <div><h3>Company and industry reports</h3><p>Focused research outputs that bring together useful company or sector information in a clear, consistent format.</p></div>
+      <div class="price-tag">Planned</div>
+    </div>
+  </div>
+</section>
+
+<section id="next-step">
+  <div class="wrap">
+    <div class="book-panel">
+      <h2>Start exploring ICO data protection decisions.</h2>
+      <p>Search published cases online for free, compare organisations and sectors, and export the records you select.</p>
+      <div class="cta-row" style="justify-content:center;">
+        <a href="demo.html" class="btn-primary">Explore ICO decisions →</a>
+        <a href="mailto:hello@rowcraftdata.com?subject=ICO%20complaints%20data" class="btn-secondary">Ask about the data</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span class="mono">Rowcraft</span>
+    <span><a href="mailto:hello@rowcraftdata.com">hello@rowcraftdata.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
