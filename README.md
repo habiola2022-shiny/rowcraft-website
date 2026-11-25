@@ -14,8 +14,8 @@ Then visit http://localhost:8000.
 
 ## Pages
 
-- `index.html` — Rowcraft homepage and ICO CSV collection offer.
-- `demo.html` — embedded Streamlit ICO explorer and CSV collection offer.
+- `index.html` — Rowcraft's public-data products and research homepage, with the ICO explorer as a live example.
+- `demo.html` — ICO-specific landing page with the embedded Streamlit explorer and compiled dataset offer.
 - `purchase-success.html` — post-checkout download and order status.
 
 ## ICO CSV checkout and delivery
