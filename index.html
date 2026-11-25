@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rowcraft | Public Data Products, Tools &amp; Insights</title>
-<meta name="description" content="Rowcraft turns publicly available data into searchable tools, clean datasets and focused insights—helping teams find answers faster and make better decisions.">
+<title>Rowcraft | Public Data Tools &amp; ICO Decisions Database</title>
+<meta name="description" content="Rowcraft turns public data into useful tools and datasets. Explore 107,167 ICO case records free, or download the complete database CSV for £4.99.">
 <link rel="canonical" href="https://www.rowcraftdata.com/">
-<meta property="og:title" content="Rowcraft | Public Data, Made Useful">
-<meta property="og:description" content="Searchable tools, clean datasets and focused insights built from publicly available data. Find answers faster with Rowcraft.">
+<meta property="og:title" content="Rowcraft | Public Data Tools &amp; ICO Decisions Database">
+<meta property="og:description" content="Rowcraft turns public data into useful tools and datasets. Explore 107,167 ICO case records free, or download the complete CSV for £4.99.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.rowcraftdata.com/">
 <meta property="og:site_name" content="Rowcraft">
@@ -113,49 +113,11 @@
   }
   .btn-secondary:hover{border-color:var(--ink); background:var(--paper-alt);}
 
-  /* GRID SIGNATURE ANIMATION */
-  .signature{
-    border:1px solid var(--grid); border-radius:var(--radius); background:#fff;
-    padding:16px; position:relative;
+  .hero-product-preview{
+    margin:0; padding:8px; border:1px solid var(--grid); border-radius:var(--radius); background:#fff;
   }
-  .sig-label{
-    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft);
-    display:flex; justify-content:space-between; margin-bottom:10px;
-  }
-  .cellgrid{
-    display:grid; grid-template-columns:repeat(6, 1fr); gap:4px;
-  }
-  .cell{
-    aspect-ratio:1.3; border-radius:1px; background:var(--paper-alt);
-    border:1px solid var(--grid);
-    animation:settle 2.6s ease-in-out infinite;
-  }
-  .cell.hdr{background:var(--ink); border-color:var(--ink);}
-  @keyframes settle{
-    0%{background:#DADFD9;}
-    35%{background:var(--teal-soft);}
-    60%{background:var(--teal-soft);}
-    100%{background:#DADFD9;}
-  }
-  .cell:nth-child(1){animation-delay:0.0s;}
-  .cell:nth-child(2){animation-delay:0.1s;}
-  .cell:nth-child(3){animation-delay:0.2s;}
-  .cell:nth-child(4){animation-delay:0.3s;}
-  .cell:nth-child(5){animation-delay:0.4s;}
-  .cell:nth-child(6){animation-delay:0.5s;}
-  .cell:nth-child(7){animation-delay:0.15s;}
-  .cell:nth-child(8){animation-delay:0.25s;}
-  .cell:nth-child(9){animation-delay:0.35s;}
-  .cell:nth-child(10){animation-delay:0.45s;}
-  .cell:nth-child(11){animation-delay:0.55s;}
-  .cell:nth-child(12){animation-delay:0.65s;}
-  .cell:nth-child(13){animation-delay:0.3s;}
-  .cell:nth-child(14){animation-delay:0.4s;}
-  .cell:nth-child(15){animation-delay:0.5s;}
-  .cell:nth-child(16){animation-delay:0.6s;}
-  .cell:nth-child(17){animation-delay:0.7s;}
-  .cell:nth-child(18){animation-delay:0.8s;}
-  .sig-caption{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); margin-top:10px;}
+  .hero-product-preview img{display:block; width:100%; height:auto;}
+  .hero-product-preview figcaption{padding:10px 6px 4px; color:var(--ink-soft); font-size:12px;}
 
   /* SECTION SHARED */
   section{padding:64px 0; border-top:1px solid var(--grid);}
@@ -226,32 +188,28 @@
       <a href="#products">Data products</a>
       <a href="#how-it-works">How it works</a>
       <a href="#opportunities">What we build</a>
-      <a href="demo.html">Live example</a>
+      <a href="demo.html#ico-app">Free explorer</a>
     </div>
-    <a href="demo.html" class="nav-cta">Live example</a>
+    <a href="demo.html#purchase" class="nav-cta">Get the CSV · £4.99</a>
   </nav>
 </header>
 
 <section class="hero" style="border-top:none;">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">PUBLIC DATA / PRACTICAL VALUE</div>
-      <h1>Public data, <span class="accent">made useful.</span></h1>
-      <p class="lede">Rowcraft turns fragmented public information into searchable tools, clean datasets and focused analysis—so teams spend less time finding and preparing data, and more time acting on it.</p>
+      <div class="eyebrow">ROWCRAFT / PUBLIC DATA PRODUCT</div>
+      <h1>ICO Data Protection <span class="accent">Decisions Database</span></h1>
+      <p class="lede">107,167 unique published ICO case records, compiled from eight source CSVs, standardised and deduplicated. Search online for free, or download the complete CSV for £4.99.</p>
       <div class="cta-row">
-        <a href="demo.html" class="btn-primary">Explore a live data product</a>
-        <a href="mailto:hello@rowcraftdata.com?subject=Rowcraft%20public%20data%20project" class="btn-secondary">Discuss a data project</a>
+        <a href="demo.html#purchase" class="btn-primary">Get the complete CSV — £4.99</a>
+        <a href="demo.html#ico-app" class="btn-secondary">Search the free database</a>
       </div>
+      <p class="note" style="margin-top:14px;">An independent Rowcraft compilation of ICO-published complaint and case records—not an official ICO product.</p>
     </div>
-    <div class="signature">
-      <div class="sig-label"><span>public_data → insight</span><span>ROWCRAFT / PRODUCT</span></div>
-      <div class="cellgrid">
-        <div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div><div class="cell hdr"></div>
-        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
-        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
-      </div>
-      <div class="sig-caption">// organised data — ready to explore and use</div>
-    </div>
+    <figure class="hero-product-preview">
+      <a href="demo.html#ico-app"><img src="ico-explorer-preview.png" alt="Screenshot of the free ICO case explorer showing search filters, case outcomes and sector charts." loading="lazy"></a>
+      <figcaption>The free explorer defaults to identified organisations (106,031 records). The full CSV includes all 107,167 records.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -286,16 +244,16 @@
     </div>
     <div class="price-card" style="margin-top:24px;">
       <div>
-        <div class="section-tag">A LIVE ROWCRAFT EXAMPLE</div>
-        <h3>ICO data protection decisions</h3>
-        <p>Explore how public records become something useful: search cases, compare sectors and outcomes, and export the records you need. The free explorer demonstrates the tool; the paid dataset saves time by compiling 107,167 records from eight source downloads into one standardised, deduplicated CSV.</p>
-        <p style="margin-top:10px;">Explore for free, or get the complete dataset for £4.99 once, including applicable tax.</p>
-        <a class="btn-primary" style="margin-top:18px;" href="demo.html">Explore the ICO example →</a>
-        <a class="btn-secondary" style="margin-top:18px;" href="demo.html#purchase">Get the dataset — £4.99</a>
+        <div class="section-tag">ROWCRAFT / FEATURED DATABASE</div>
+        <h3>ICO Data Protection Decisions Database</h3>
+        <p>Search published complaint and case records by organisation, sector, outcome and completion date. Rowcraft combines eight ICO source files into one standardised, deduplicated dataset; the complete 107,167-record CSV saves you collecting and joining the files yourself.</p>
+        <p style="margin-top:10px;">Explore the database online for free, or download the CSV in a ZIP archive for £4.99 once, including applicable tax.</p>
+        <a class="btn-primary" style="margin-top:18px;" href="demo.html#purchase">Get the complete database — £4.99 →</a>
+        <a class="btn-secondary" style="margin-top:18px;" href="methodology.html">See sources &amp; methodology</a>
       </div>
       <div class="price-tag">£4.99 <span>one-off, tax inclusive</span></div>
     </div>
-    <p class="note" style="margin-top:16px;">The live example is based on public ICO complaints data, which may be updated by the source. Reuse is subject to the source terms and relevant data restrictions.</p>
+    <p class="note" style="margin-top:16px;">The records describe published ICO complaint-case work. A complaint or case outcome is not proof of wrongdoing, and the number of complaints is not a compliance score. <a href="methodology.html">Read the sources and methodology.</a></p>
   </div>
 </section>
 
@@ -344,7 +302,7 @@
   <div class="wrap">
     <div class="section-head">
       <div class="section-tag">BEYOND ONE DATASET</div>
-      <h2>More public data. More useful connections.</h2>
+      <h2>Rowcraft works beyond one database.</h2>
       <p class="mono" style="margin:10px 0 0; font-size:13px; color:var(--ink-soft);">Exploring new sources and ways to answer real-world questions</p>
     </div>
     <div class="price-card" style="margin-bottom:16px;">
@@ -374,6 +332,7 @@
 <footer>
   <div class="wrap footer-row">
     <span class="mono">Rowcraft</span>
+    <span><a href="methodology.html">Sources &amp; methodology</a></span>
     <span><a href="mailto:hello@rowcraftdata.com">hello@rowcraftdata.com</a></span>
   </div>
 </footer>

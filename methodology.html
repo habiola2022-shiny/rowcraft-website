@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICO Database Sources &amp; Methodology | Rowcraft</title>
+<meta name="description" content="See the eight ICO source files, record coverage, CSV fields, deduplication rules and outcome-label methodology behind Rowcraft's ICO database.">
+<link rel="canonical" href="https://www.rowcraftdata.com/methodology">
+<meta property="og:title" content="ICO Database Sources &amp; Methodology | Rowcraft">
+<meta property="og:description" content="Transparent sources and methodology for Rowcraft's independent compilation of published ICO data-protection complaint records.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.rowcraftdata.com/methodology">
+<meta property="og:site_name" content="Rowcraft">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F7F5;--paper-alt:#EFEFEC;--ink:#1B2430;--ink-soft:#5B6570;--grid:#D8DBD9;--teal:#2F6F5E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 'IBM Plex Sans',sans-serif}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 28px}
+header{position:sticky;top:0;z-index:5;background:rgba(247,247,245,.94);border-bottom:1px solid var(--grid);backdrop-filter:blur(6px)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 28px;max-width:1040px;margin:0 auto}
+.brand{font:600 18px 'IBM Plex Mono',monospace;text-decoration:none}
+.nav-links{display:flex;gap:24px;font-size:14px}
+.nav-links a{text-decoration:none;color:var(--ink-soft)}
+.nav-cta{font:500 13px 'IBM Plex Mono',monospace;background:var(--ink);color:var(--paper);padding:9px 16px;text-decoration:none;white-space:nowrap}
+main{padding:52px 0 64px}
+.tag{font:12px 'IBM Plex Mono',monospace;color:var(--teal);margin-bottom:10px}
+h1{font-size:clamp(32px,5vw,44px);line-height:1.12;letter-spacing:-.02em;margin:0 0 14px}
+h2{font-size:24px;line-height:1.25;margin:36px 0 10px}
+h3{font-size:17px;margin:20px 0 8px}
+p{color:var(--ink-soft);margin:0 0 14px}
+.lead{font-size:17px;max-width:76ch}
+.notice{margin:20px 0;padding:18px 20px;background:#fff;border:1px solid var(--grid);border-left:4px solid var(--teal)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.fact{padding:16px;border:1px solid var(--grid);background:#fff}
+.fact dt{font:12px 'IBM Plex Mono',monospace;color:var(--ink-soft)}
+.fact dd{margin:6px 0 0;font-weight:600}
+ol{padding-left:22px;color:var(--ink-soft)}
+li{margin:0 0 10px}
+.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--grid)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--grid);text-align:left;vertical-align:top}
+th{font:500 12px 'IBM Plex Mono',monospace;background:var(--paper-alt)}
+tbody tr:last-child td{border-bottom:0}
+.sources{padding-left:22px}
+.sources a{overflow-wrap:anywhere}
+.field-list{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0}
+.field-list li{margin:0;padding:4px 8px;background:var(--paper-alt);border:1px solid var(--grid);font:12px 'IBM Plex Mono',monospace}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.button{display:inline-block;padding:12px 18px;background:var(--teal);color:white;text-decoration:none;font:500 13px 'IBM Plex Mono',monospace}
+.button-secondary{background:transparent;color:var(--ink);border:1px solid var(--grid)}
+footer{border-top:1px solid var(--grid);padding:28px 0;font-size:13px;color:var(--ink-soft)}
+@media(max-width:760px){.nav-links{display:none}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.wrap{padding:0 16px}nav{padding:16px}.facts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/">Rowcraft</a>
+    <div class="nav-links">
+      <a href="/">Rowcraft</a>
+      <a href="demo.html#csv-preview">CSV preview</a>
+      <a href="#sources">Sources</a>
+    </div>
+    <a href="demo.html#purchase" class="nav-cta">Get the CSV · £4.99</a>
+  </nav>
+</header>
+<main class="wrap">
+  <div class="tag">ROWCRAFT / TRANSPARENT DATA METHODS</div>
+  <h1>ICO Data Protection Decisions Database: sources &amp; methodology</h1>
+  <p class="lead">This page explains how Rowcraft compiled its database from the ICO’s published data-protection complaint and case CSVs. “ICO Data Protection Decisions Database” is the product name for this independent compilation; it is not an official ICO product.</p>
+
+  <div class="notice">
+    <strong>Important context</strong>
+    <p style="margin:6px 0 0;">These are published complaint-case records; they do not all represent enforcement actions or findings against the named organisations. A complaint, its outcome or an organisation’s complaint count is not, by itself, proof of wrongdoing or a measure of compliance. Rowcraft is not affiliated with, endorsed by or acting on behalf of the ICO.</p>
+  </div>
+
+  <h2>This release at a glance</h2>
+  <dl class="facts">
+    <div class="fact"><dt>Unique case references</dt><dd>107,167</dd></div>
+    <div class="fact"><dt>ICO source CSVs</dt><dd>8 files</dd></div>
+    <div class="fact"><dt>Last compiled</dt><dd>24 November 2026</dd></div>
+    <div class="fact"><dt>Received dates</dt><dd>11 Nov 2019 – 23 Jun 2026</dd></div>
+    <div class="fact"><dt>Completed dates</dt><dd>1 Jul 2024 – 30 Jun 2026</dd></div>
+    <div class="fact"><dt>Delivered format</dt><dd>CSV in a ZIP archive</dd></div>
+  </dl>
+  <p>This is a fixed release, not a live feed. Later ICO publications are not included unless Rowcraft produces a refreshed version.</p>
+
+  <h2>How the database was prepared</h2>
+  <ol>
+    <li><strong>Combined eight source CSVs.</strong> The source files use different headings and date formats; their records are mapped to a consistent set of columns.</li>
+    <li><strong>Standardised values.</strong> Leading and trailing whitespace is trimmed and dates are parsed to ISO format (YYYY-MM-DD). The source file name is retained for traceability.</li>
+    <li><strong>Removed duplicate case references.</strong> One row is retained for each unique ICO case reference.</li>
+    <li><strong>Added a calculated duration.</strong> <code>days_to_close</code> is calculated as the number of days between the received and completed dates.</li>
+    <li><strong>Added a practical outcome label.</strong> The <code>outcome</code> field groups the ICO’s source <code>detail1</code> field as shown below. The original decision-detail fields remain in the CSV.</li>
+    <li><strong>Removed internal search helpers.</strong> Search-only fields used by the explorer are not included in the download.</li>
+  </ol>
+
+  <h2>How Rowcraft’s outcome labels map to source details</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>ICO source detail1</th><th>Rowcraft CSV outcome</th></tr></thead>
+      <tbody>
+        <tr><td>Infringement or Potential infringement</td><td>ICO saw a (possible) breach</td></tr>
+        <tr><td>No infringement</td><td>No breach found</td></tr>
+        <tr><td>No action</td><td>Couldn't be taken further</td></tr>
+        <tr><td>Other source values</td><td>Other / not information rights</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:12px;">These are Rowcraft groupings of source text to make records easier to filter. They are not independent legal findings, ICO endorsements or legal advice.</p>
+
+  <h2>Columns included in the CSV</h2>
+  <ul class="field-list" aria-label="CSV column names">
+    <li>status</li><li>legislation</li><li>case_ref</li><li>received_date</li><li>completed_date</li>
+    <li>sector</li><li>sub_sector</li><li>primary_reason</li><li>organisation</li><li>decision</li>
+    <li>detail1</li><li>detail2</li><li>days_to_close</li><li>source_file</li><li>outcome</li>
+  </ul>
+
+  <h2 id="sources">ICO source files</h2>
+  <p>The compilation uses these eight published CSV files. The <code>source_file</code> column identifies which file each record came from.</p>
+  <ol class="sources">
+    <li><a href="https://ico.org.uk/media2/migrated/4032155/q2-2024-2025-dataset-for-dp.csv">q2-2024-2025-dataset-for-dp.csv</a></li>
+    <li><a href="https://ico.org.uk/media2/lo0gv3ny/data-protection-complaints-q3-2024-2025.csv">data-protection-complaints-q3-2024-2025.csv</a></li>
+    <li><a href="https://ico.org.uk/media2/falpgmmh/dp-q2-2025-2026.csv">dp-q2-2025-2026.csv</a></li>
+    <li><a href="https://ico.org.uk/media2/n1lnuh3m/q4-datasets-for-dp-run-262-amended.csv">q4-datasets-for-dp-run-262-amended.csv</a></li>
+    <li><a href="https://ico.org.uk/media2/oblps3xq/dp-proactive-disclosure-completed-cases-september-2025.csv">dp-proactive-disclosure-completed-cases-september-2025.csv</a></li>
+    <li><a href="https://ico.org.uk/media2/p1ynmpz0/dp-q1-2026-27.csv">dp-q1-2026-27.csv</a></li>
+    <li><a href="https://ico.org.uk/media2/qusm5ocq/dp-complaints-q3-2025-2026.csv">dp-complaints-q3-2025-2026.csv</a></li>
+    <li><a href="https://ico.org.uk/media2/xweidxt3/dp-complaints-q4-2025-26.csv">dp-complaints-q4-2025-26.csv</a></li>
+  </ol>
+  <p>The source data is identified by the ICO app as public sector information licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>. Check the licence and source terms before reusing data.</p>
+
+  <div class="actions">
+    <a class="button" href="demo.html#purchase">Get the complete CSV — £4.99</a>
+    <a class="button button-secondary" href="demo.html#ico-app">Search the free explorer</a>
+  </div>
+</main>
+<footer><div class="wrap">Rowcraft · <a href="/">Public data products</a> · <a href="mailto:hello@rowcraftdata.com">hello@rowcraftdata.com</a></div></footer>
+</body>
+</html>

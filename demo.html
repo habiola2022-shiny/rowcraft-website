@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free ICO Data Protection Decisions | Search Organisations and Cases | Rowcraft</title>
-<meta name="description" content="Explore 107,167 published UK ICO data protection decisions for free, or get one standardised, deduplicated CSV compiled from eight source downloads for £4.99.">
-<meta property="og:title" content="Free ICO Data Protection Decisions | Rowcraft">
-<meta property="og:description" content="Explore ICO decisions for free, or get 107,167 published case records in one compiled CSV from eight source downloads for £4.99.">
+<title>ICO Data Protection Decisions Database | Rowcraft</title>
+<meta name="description" content="Search published ICO data protection complaint records online. Get the complete 107,167-record, deduplicated database CSV, compiled from eight source files, for £4.99.">
+<meta property="og:title" content="ICO Data Protection Decisions Database | Rowcraft">
+<meta property="og:description" content="Search published ICO complaint-case records free, or download the complete 107,167-record database CSV for £4.99.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://www.rowcraftdata.com/demo">
 <meta property="og:url" content="https://www.rowcraftdata.com/demo">
@@ -32,6 +32,25 @@ iframe{display:block;width:100%;height:1050px;border:0;background:#fff}
 .purchase-button{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;background:var(--teal);color:#fff;padding:13px 20px;border:0;border-radius:2px;cursor:pointer}
 .purchase-button:disabled{opacity:.65;cursor:wait}
 footer{border-top:1px solid var(--grid);padding:28px 0;font-size:13px;color:var(--ink-soft)}
+.facts-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.fact{padding:16px;border:1px solid var(--grid);background:#fff}
+.fact dt{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft)}
+.fact dd{margin:6px 0 0;font-size:15px;font-weight:600}
+.preview-section{margin:36px 0}
+.preview-section h2{font-size:24px;margin:0 0 8px}
+.explorer-shot{margin:18px 0 28px;padding:8px;border:1px solid var(--grid);background:#fff}
+.explorer-shot img{display:block;width:100%;height:auto}
+.explorer-shot figcaption{padding:10px 6px 4px;color:var(--ink-soft);font-size:13px}
+.table-wrap{overflow-x:auto;border:1px solid var(--grid);background:#fff}
+table{width:100%;min-width:860px;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--grid);text-align:left;vertical-align:top}
+th{font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--paper-alt)}
+tbody tr:last-child td{border-bottom:0}
+.column-list{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0}
+.column-list li{padding:4px 8px;background:var(--paper-alt);border:1px solid var(--grid);font:12px 'IBM Plex Mono',monospace}
+details{margin-top:16px}
+summary{cursor:pointer;font-weight:600}
+@media(max-width:720px){.facts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px){.nav-links{display:none}}
 @media(max-width:720px){.wrap{padding:0 16px}nav{padding:16px}iframe{height:900px}}
 </style>
@@ -43,27 +62,67 @@ footer{border-top:1px solid var(--grid);padding:28px 0;font-size:13px;color:var(
 <a href="#purchase" class="nav-cta">Compiled ICO · £4.99</a>
 </nav></header>
 <main class="wrap">
-<div class="tag">ROWCRAFT PUBLIC DATA PRODUCT / ICO EXAMPLE</div>
-<h1>Find ICO decisions faster.</h1>
-<p class="intro">Search published UK Information Commissioner's Office cases by organisation, sector, outcome or completion date. Compare headline figures and export matching records. Need the full dataset? Save time collecting and combining eight source downloads with one standardised, deduplicated CSV.</p>
+<div class="tag">ROWCRAFT / ICO DATA PROTECTION DECISIONS DATABASE</div>
+<h1>ICO Data Protection Decisions Database</h1>
+<p class="intro">Search published UK ICO data-protection complaint and case records by organisation, sector, outcome or completion date. Rowcraft combines eight ICO source CSVs into one standardised, deduplicated database. Search online for free, or download the complete CSV for £4.99. This is an independent Rowcraft compilation—not an official ICO product.</p>
 <div id="purchase" style="margin:24px 0;padding:24px;border:1px solid var(--grid);background:#fff;">
   <div class="tag">FULL DATASET / ONE-OFF PURCHASE</div>
-  <h2 style="font-size:22px;margin:0 0 8px;">Spend less time gathering data. Find relevant cases faster.</h2>
-  <p class="intro" style="margin-bottom:12px;">Skip the manual collecting and combining: get 107,167 published case records in one standardised, deduplicated CSV, packaged with source notes. Compiled 24 November 2026.</p>
-  <p class="intro" style="margin-bottom:16px;">£4.99 once, including applicable tax. Pay securely with Stripe, download the ZIP immediately, and receive it by email.</p>
-  <button id="buy-data" class="purchase-button" type="button">Get the compiled dataset — £4.99</button>
+  <h2 style="font-size:22px;margin:0 0 8px;">Get all 107,167 unique case records in one file</h2>
+  <p class="intro" style="margin-bottom:12px;">Save time collecting and joining eight ICO source CSVs. The complete database is standardised and deduplicated by case reference, with source notes included. Compiled 24 November 2026.</p>
+  <p class="intro" style="margin-bottom:16px;">£4.99 once, including applicable tax. Pay securely, download the CSV in a ZIP archive immediately, and receive it by email.</p>
+  <button id="buy-data" class="purchase-button" type="button">Get the complete CSV — £4.99</button>
   <p id="checkout-status" class="note" role="status" aria-live="polite"></p>
-  <p class="note"><a href="#ico-app">Prefer to explore first? Jump to the free explorer ↓</a></p>
-  <p class="note">This checkout does not create an invoice. Stripe may request a business tax ID where supported to calculate tax. The archive includes source attribution and reuse notes; outcome labels are not legal advice.</p>
+  <p class="note"><a href="#csv-preview">See sample rows and included columns</a> · <a href="methodology.html">Read sources and methodology</a> · <a href="#ico-app">Try the free explorer</a></p>
+  <p class="note">The CSV has 107,167 records. The explorer initially filters to identified organisations and shows 106,031 records; turn off that filter to include 1,136 records without an identified organisation.</p>
+  <p class="note">This checkout does not create an invoice. Stripe may request a business tax ID where supported to calculate tax.</p>
 </div>
+<dl class="facts-grid" aria-label="Database details">
+  <div class="fact"><dt>Unique records</dt><dd>107,167 case references</dd></div>
+  <div class="fact"><dt>Source files</dt><dd>8 ICO CSV downloads</dd></div>
+  <div class="fact"><dt>Received dates</dt><dd>11 Nov 2019 – 23 Jun 2026</dd></div>
+  <div class="fact"><dt>Completed dates</dt><dd>1 Jul 2024 – 30 Jun 2026</dd></div>
+  <div class="fact"><dt>Last compiled</dt><dd>24 Nov 2026</dd></div>
+  <div class="fact"><dt>File format</dt><dd>CSV in a ZIP archive</dd></div>
+</dl>
+<section class="preview-section" id="csv-preview">
+  <div class="tag">SEE WHAT YOU GET</div>
+  <h2>Preview the explorer and CSV</h2>
+  <p class="intro">Use the free online explorer to search and filter. The paid download contains the complete 107,167-record CSV, plus source notes.</p>
+  <figure class="explorer-shot">
+    <a href="https://rowcraft-data-k8zzbr83vhlyfdz3mwhdvu.streamlit.app/" target="_blank" rel="noopener noreferrer">
+      <img src="ico-explorer-preview.png" alt="Screenshot of the Rowcraft ICO complaints explorer showing its published-case warning, filters and record summary." loading="lazy">
+    </a>
+    <figcaption>The explorer defaults to identified organisations (106,031 records in this release). Switch off “Only identified organisations” to include 1,136 records without an identified organisation. The complete CSV includes all 107,167 records.</figcaption>
+  </figure>
+  <h2>Sample CSV records</h2>
+  <p class="note" style="margin:0 0 12px;">Examples from the 24 November 2026 release. Outcome labels are Rowcraft groupings of source details, not legal findings or compliance ratings.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>case_ref</th><th>organisation</th><th>sector</th><th>primary_reason</th><th>outcome</th><th>completed_date</th></tr></thead>
+      <tbody>
+        <tr><td>IC-297116-P5L9</td><td>eBay GmbH</td><td>General business</td><td>Art 5(1)(f) - Integrity and confidentiality principle</td><td>No breach found</td><td>2024-07-01</td></tr>
+        <tr><td>IC-297032-W7D9</td><td>Abacai Technologies Limited</td><td>Finance, insurance and credit</td><td>Art 15 - Right of access</td><td>Couldn't be taken further</td><td>2024-07-01</td></tr>
+        <tr><td>IC-297888-J9G1</td><td>Abertawe Medical Partnership</td><td>Health</td><td>Art 15(3)(1) - Provide a copy of the personal data</td><td>Couldn't be taken further</td><td>2024-07-01</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <details>
+    <summary>Show all 15 CSV columns</summary>
+    <ul class="column-list">
+      <li>status</li><li>legislation</li><li>case_ref</li><li>received_date</li><li>completed_date</li>
+      <li>sector</li><li>sub_sector</li><li>primary_reason</li><li>organisation</li><li>decision</li>
+      <li>detail1</li><li>detail2</li><li>days_to_close</li><li>source_file</li><li>outcome</li>
+    </ul>
+  </details>
+</section>
 <div class="app-shell" id="ico-app">
 <iframe src="https://rowcraft-data-k8zzbr83vhlyfdz3mwhdvu.streamlit.app/?embed=true"
-title="Rowcraft ICO data product demonstration" loading="lazy"
+title="Free Rowcraft explorer for published ICO complaint and case records" loading="lazy"
 allow="clipboard-read; clipboard-write"></iframe>
 </div>
-<p class="note">If the embedded application cannot load or requires sign-in, <a href="https://rowcraft-data-k8zzbr83vhlyfdz3mwhdvu.streamlit.app/" target="_blank" rel="noopener noreferrer">open ICO Data Protection Decisions in a new tab</a>. The app identifies the source as ICO data protection complaints data licensed under the Open Government Licence v3.0.</p>
+<p class="note">If the embedded application cannot load or requires sign-in, <a href="https://rowcraft-data-k8zzbr83vhlyfdz3mwhdvu.streamlit.app/" target="_blank" rel="noopener noreferrer">open the free ICO explorer in a new tab</a>. <a href="methodology.html">Review the source files, compilation method and important limitations.</a></p>
 </main>
-<footer><div class="wrap"><span style="font-family:'IBM Plex Mono',monospace;">Rowcraft</span> · <a href="mailto:hello@rowcraftdata.com">hello@rowcraftdata.com</a></div></footer>
+<footer><div class="wrap"><span style="font-family:'IBM Plex Mono',monospace;">Rowcraft</span> · <a href="methodology.html">Sources &amp; methodology</a> · <a href="mailto:hello@rowcraftdata.com">hello@rowcraftdata.com</a></div></footer>
 <script>
 const checkoutButton=document.querySelector("#buy-data");
 const checkoutStatus=document.querySelector("#checkout-status");

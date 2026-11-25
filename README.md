@@ -14,8 +14,10 @@ Then visit http://localhost:8000.
 
 ## Pages
 
-- `index.html` — Rowcraft's public-data products and research homepage, with the ICO explorer as a live example.
-- `demo.html` — ICO-specific landing page with the embedded Streamlit explorer and compiled dataset offer.
+- `index.html` — Rowcraft homepage, leading with the ICO Data Protection Decisions Database as its featured public-data product.
+- `demo.html` — Product landing page with the free explorer, CSV preview, exact release details and purchase offer.
+- `methodology.html` — ICO source files, compilation method, fields and interpretation notes.
+- `ico-explorer-preview.png` — screenshot of the live free explorer.
 - `purchase-success.html` — post-checkout download and order status.
 
 ## ICO CSV checkout and delivery

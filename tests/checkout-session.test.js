@@ -17,8 +17,9 @@ test("creates a tax-inclusive £4.99 Checkout session without invoice creation",
 
   assert.equal(params.get("line_items[0][price_data][unit_amount]"), "499");
   assert.equal(params.get("line_items[0][price_data][tax_behavior]"), "inclusive");
-  assert.equal(params.get("line_items[0][price_data][product_data][name]"), "Compiled ICO Data Protection Decisions Dataset");
-  assert.match(params.get("line_items[0][price_data][product_data][description]"), /eight ICO source downloads/);
+  assert.equal(params.get("line_items[0][price_data][product_data][name]"), "ICO Data Protection Decisions Database");
+  assert.match(params.get("line_items[0][price_data][product_data][description]"), /107,167 unique published ICO complaint-case records/);
+  assert.match(params.get("line_items[0][price_data][product_data][description]"), /not an official ICO product/);
   assert.equal(params.get("automatic_tax[enabled]"), "true");
   assert.equal(params.get("billing_address_collection"), "auto");
   assert.equal(params.get("tax_id_collection[enabled]"), "true");
