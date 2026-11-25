@@ -20,7 +20,7 @@ nav{display:flex;align-items:center;justify-content:space-between;gap:20px;paddi
 .brand{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:18px;text-decoration:none;display:flex;align-items:center;gap:8px}
 .brand-dot{width:8px;height:8px;background:var(--teal);display:inline-block}
 .nav-links{display:flex;gap:24px;font-size:14px}.nav-links a{text-decoration:none;color:var(--ink-soft)}
-.nav-cta{font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--ink);color:var(--paper);padding:9px 16px;text-decoration:none}
+.nav-cta{font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--ink);color:var(--paper);padding:9px 16px;text-decoration:none;white-space:nowrap}
 main{padding:48px 0 60px}.tag{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal);margin-bottom:10px}
 h1{font-size:clamp(32px,5vw,44px);line-height:1.12;letter-spacing:-.02em;margin:0 0 14px;font-weight:600}
 .intro{color:var(--ink-soft);max-width:72ch;margin:0 0 26px}
@@ -30,33 +30,34 @@ iframe{display:block;width:100%;height:1050px;border:0;background:#fff}
 .purchase-button{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;background:var(--teal);color:#fff;padding:13px 20px;border:0;border-radius:2px;cursor:pointer}
 .purchase-button:disabled{opacity:.65;cursor:wait}
 footer{border-top:1px solid var(--grid);padding:28px 0;font-size:13px;color:var(--ink-soft)}
-@media(max-width:720px){.nav-links{gap:12px;font-size:12px}.wrap{padding:0 16px}nav{padding:16px}iframe{height:900px}}
+@media(max-width:900px){.nav-links{display:none}}
+@media(max-width:720px){.wrap{padding:0 16px}nav{padding:16px}iframe{height:900px}}
 </style>
 </head>
 <body>
 <header><nav>
 <a class="brand" href="index.html"><span class="brand-dot"></span>Rowcraft</a>
 <div class="nav-links"><a href="index.html#products">Data products</a><a href="index.html#how-it-works">How it works</a><a href="index.html#future-products">Future products</a></div>
-<a href="index.html" class="nav-cta">Back to Rowcraft</a>
+<a href="#purchase" class="nav-cta">Buy CSV · £4.99</a>
 </nav></header>
 <main class="wrap">
 <div class="tag">FREE INTERACTIVE EXPLORER / ICO DATA PROTECTION</div>
 <h1>Explore ICO data protection decisions.</h1>
 <p class="intro">Search published UK Information Commissioner's Office data protection complaints by organisation and bring up every matching case. Filter by sector, outcome and completion date, compare headline figures and export matching cases as CSV.</p>
+<div id="purchase" style="margin:24px 0;padding:24px;border:1px solid var(--grid);background:#fff;">
+  <div class="tag">FULL DATASET / ONE-OFF PURCHASE</div>
+  <h2 style="font-size:22px;margin:0 0 8px;">Get the complete ICO decisions CSV</h2>
+  <p class="intro" style="margin-bottom:12px;">107,167 published case records, standardised and deduplicated by case reference. Compiled 24 November 2026 and delivered as a ZIP archive.</p>
+  <p class="intro" style="margin-bottom:16px;">£4.99 total, including applicable tax. Pay securely with Stripe, then download immediately and receive the same file by email.</p>
+  <button id="buy-data" class="purchase-button" type="button">Buy and download — £4.99</button>
+  <p id="checkout-status" class="note" role="status" aria-live="polite"></p>
+  <p class="note"><a href="#ico-app">Prefer to explore first? Jump to the free explorer ↓</a></p>
+  <p class="note">This checkout does not create an invoice. Stripe may request a business tax ID where supported to calculate tax. The archive includes source attribution and reuse notes; outcome labels are not legal advice.</p>
+</div>
 <div class="app-shell" id="ico-app">
 <iframe src="https://rowcraft-data-k8zzbr83vhlyfdz3mwhdvu.streamlit.app/?embed=true"
 title="Rowcraft ICO data product demonstration" loading="lazy"
 allow="clipboard-read; clipboard-write"></iframe>
-</div>
-<div id="purchase" style="margin-top:24px;padding:24px;border:1px solid var(--grid);background:#fff;">
-  <div class="tag">ROWCRAFT DATA PRODUCT / ONE-OFF PURCHASE</div>
-  <h2 style="font-size:22px;margin:0 0 8px;">ICO data protection decisions — compiled CSV</h2>
-  <p class="intro" style="margin-bottom:12px;">107,167 published case records combined from the ICO source files, standardised and deduplicated by case reference. Compiled 24 November 2026. CSV included in a small ZIP archive.</p>
-  <p class="intro" style="margin-bottom:16px;">£4.99 total, including applicable tax calculated by Stripe Tax. After checkout, download the archive immediately and receive the same file by email. Secure Stripe checkout shows the payment methods available to you.</p>
-  <p class="note" style="margin-top:-8px;margin-bottom:16px;">This checkout does not create an invoice. Stripe may request a business tax ID where supported to calculate tax.</p>
-  <button id="buy-data" class="purchase-button" type="button">Buy and download — £4.99</button>
-  <p id="checkout-status" class="note" role="status" aria-live="polite"></p>
-  <p class="note">This is a convenience compilation of public ICO data, not an exclusive source. Outcome labels are practical groupings of source decision details, not legal advice. Source attribution and reuse notes are included in the archive.</p>
 </div>
 <p class="note">If the embedded application cannot load or requires sign-in, <a href="https://rowcraft-data-k8zzbr83vhlyfdz3mwhdvu.streamlit.app/" target="_blank" rel="noopener noreferrer">open ICO Data Protection Decisions in a new tab</a>. The app identifies the source as ICO data protection complaints data licensed under the Open Government Licence v3.0.</p>
 </main>
