@@ -20,9 +20,9 @@ Then visit http://localhost:8000.
 
 ## ICO CSV checkout and delivery
 
-Checkout uses Stripe Checkout with Stripe Tax enabled and inclusive GBP 4.99 pricing. After a successful payment the buyer can download the ZIP from the success page; a Stripe webhook sends the same archive to the checkout email using Resend. The ZIP is held in private Netlify Blobs, not in this public repository.
+Checkout uses Stripe Checkout with Stripe Tax enabled and inclusive GBP 4.99 pricing. After a successful payment the buyer can download the ZIP from the success page; a Stripe webhook sends the same archive to the checkout email using Resend. The ZIP is held in private Netlify Blobs, not in this public repository. Checkout can collect eligible business tax IDs for tax calculation but does not create an invoice.
 
-The checkout offers an optional business-invoice request. When selected, Checkout collects a billing address and eligible business tax ID, creates a paid invoice, and Stripe emails the invoice summary after payment. This post-payment invoice feature for one-time Checkout purchases is separately priced; review Stripe's current fees and enable automatic receipts in Stripe's customer email settings. Bespoke service invoices are not automated on the website; create those using Stripe Invoicing and assign the appropriate service tax code.
+Stripe Invoicing is not integrated into the CSV checkout. Create bespoke-service invoices separately in Stripe Invoicing and assign the appropriate service tax code. Before accepting business sales, confirm with a tax adviser whether and when Rowcraft must issue VAT invoices; Stripe receipts are not a substitute for a required VAT invoice.
 
 Before enabling automatic tax, configure Stripe Tax and add active registrations for the jurisdictions where Rowcraft is registered and intends to collect tax. Set an appropriate default product tax code for the downloadable CSV in Stripe Tax settings; do not assume the CSV and bespoke services share a tax classification. Stripe calculates tax only for configured registrations. Consult a tax adviser about registration and treatment in other countries.
 

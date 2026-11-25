@@ -1,5 +1,5 @@
 import { json, PRODUCT_ID, requiredEnv } from "./lib/order.js";
-import { createCheckoutSessionParams, parseBusinessInvoiceRequest } from "./lib/checkout-session.js";
+import { createCheckoutSessionParams } from "./lib/checkout-session.js";
 
 export default async (request) => {
   if (request.method !== "POST") {
@@ -12,13 +12,6 @@ export default async (request) => {
     return json({ error: "Checkout must be started from the Rowcraft website." }, 403);
   }
 
-  let businessInvoice;
-  try {
-    businessInvoice = parseBusinessInvoiceRequest(await request.text());
-  } catch (error) {
-    return json({ error: error.message }, 400);
-  }
-
   const blobKey = requiredEnv("PRODUCT_BLOB_KEY");
   const release = requiredEnv("PRODUCT_RELEASE_DATE");
   const params = createCheckoutSessionParams({
@@ -26,7 +19,6 @@ export default async (request) => {
     productId: PRODUCT_ID,
     blobKey,
     release,
-    businessInvoice,
   });
 
   const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {

@@ -29,8 +29,6 @@ iframe{display:block;width:100%;height:1050px;border:0;background:#fff}
 .note{font-size:13px;color:var(--ink-soft);margin:14px 0 0}
 .purchase-button{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;background:var(--teal);color:#fff;padding:13px 20px;border:0;border-radius:2px;cursor:pointer}
 .purchase-button:disabled{opacity:.65;cursor:wait}
-.invoice-request{display:flex;align-items:flex-start;gap:10px;margin:0 0 16px;font-size:14px;color:var(--ink-soft)}
-.invoice-request input{margin-top:5px}
 footer{border-top:1px solid var(--grid);padding:28px 0;font-size:13px;color:var(--ink-soft)}
 @media(max-width:720px){.nav-links{gap:12px;font-size:12px}.wrap{padding:0 16px}nav{padding:16px}iframe{height:900px}}
 </style>
@@ -55,8 +53,7 @@ allow="clipboard-read; clipboard-write"></iframe>
   <h2 style="font-size:22px;margin:0 0 8px;">ICO data protection decisions — compiled CSV</h2>
   <p class="intro" style="margin-bottom:12px;">107,167 published case records combined from the ICO source files, standardised and deduplicated by case reference. Compiled 24 November 2026. CSV included in a small ZIP archive.</p>
   <p class="intro" style="margin-bottom:16px;">£4.99 total, including applicable tax calculated by Stripe Tax. After checkout, download the archive immediately and receive the same file by email. Secure Stripe checkout shows the payment methods available to you.</p>
-  <label class="invoice-request"><input id="business-invoice" type="checkbox"> I’m buying on behalf of a business and would like a formal invoice.</label>
-  <p class="note" style="margin-top:-8px;margin-bottom:16px;">If selected, Stripe Checkout will request business details and an eligible tax ID, then email a paid invoice after successful payment. For bespoke data services, invoices are handled separately through Stripe Invoicing.</p>
+  <p class="note" style="margin-top:-8px;margin-bottom:16px;">This checkout does not create an invoice. Stripe may request a business tax ID where supported to calculate tax.</p>
   <button id="buy-data" class="purchase-button" type="button">Buy and download — £4.99</button>
   <p id="checkout-status" class="note" role="status" aria-live="polite"></p>
   <p class="note">This is a convenience compilation of public ICO data, not an exclusive source. Outcome labels are practical groupings of source decision details, not legal advice. Source attribution and reuse notes are included in the archive.</p>
@@ -67,16 +64,11 @@ allow="clipboard-read; clipboard-write"></iframe>
 <script>
 const checkoutButton=document.querySelector("#buy-data");
 const checkoutStatus=document.querySelector("#checkout-status");
-const businessInvoice=document.querySelector("#business-invoice");
 checkoutButton.addEventListener("click",async()=>{
   checkoutButton.disabled=true;
   checkoutStatus.textContent="Opening secure Stripe checkout…";
   try{
-    const response=await fetch("/api/create-checkout-session",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({businessInvoice:businessInvoice.checked})
-    });
+    const response=await fetch("/api/create-checkout-session",{method:"POST"});
     const result=await response.json();
     if(!response.ok||!result.url)throw new Error(result.error||"Secure checkout is unavailable.");
     location.assign(result.url);
