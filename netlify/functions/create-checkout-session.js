@@ -1,4 +1,5 @@
 import { json, PRODUCT_ID, requiredEnv } from "./lib/order.js";
+import { createCheckoutSessionParams, parseBusinessInvoiceRequest } from "./lib/checkout-session.js";
 
 export default async (request) => {
   if (request.method !== "POST") {
@@ -11,21 +12,21 @@ export default async (request) => {
     return json({ error: "Checkout must be started from the Rowcraft website." }, 403);
   }
 
+  let businessInvoice;
+  try {
+    businessInvoice = parseBusinessInvoiceRequest(await request.text());
+  } catch (error) {
+    return json({ error: error.message }, 400);
+  }
+
   const blobKey = requiredEnv("PRODUCT_BLOB_KEY");
   const release = requiredEnv("PRODUCT_RELEASE_DATE");
-  const params = new URLSearchParams({
-    mode: "payment",
-    "success_url": `${siteUrl}/purchase-success.html?session_id={CHECKOUT_SESSION_ID}`,
-    "cancel_url": `${siteUrl}/demo.html#purchase`,
-    "line_items[0][price_data][currency]": "gbp",
-    "line_items[0][price_data][unit_amount]": "499",
-    "line_items[0][price_data][product_data][name]": "ICO Data Protection Decisions CSV",
-    "line_items[0][price_data][product_data][description]": "A combined, standardised compilation of publicly available ICO case data.",
-    "line_items[0][quantity]": "1",
-    "metadata[product]": PRODUCT_ID,
-    "metadata[blob_key]": blobKey,
-    "metadata[release]": release,
-    "payment_intent_data[metadata][product]": PRODUCT_ID,
+  const params = createCheckoutSessionParams({
+    siteUrl,
+    productId: PRODUCT_ID,
+    blobKey,
+    release,
+    businessInvoice,
   });
 
   const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
