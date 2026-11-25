@@ -76,12 +76,12 @@ export async function emailProduct(session, eventId) {
     body: JSON.stringify({
       from: requiredEnv("RESEND_FROM_EMAIL"),
       to: [email],
-      subject: "Your Rowcraft ICO data CSV",
+      subject: "Your compiled Rowcraft ICO decisions dataset",
       text: [
         "Thanks for your purchase.",
         "",
-        "Your ZIP attachment contains the combined ICO data protection decisions CSV and its source notes.",
-        "The compilation contains 107,167 records, deduplicated by case reference, from the ICO source files current to 24 November 2026.",
+        "Your ZIP attachment contains one standardised, deduplicated ICO data protection decisions CSV and its source notes.",
+        "It combines 107,167 records from eight ICO source downloads, deduplicated by case reference, current to 24 November 2026—so you get one ready-to-use file instead of collecting and combining the downloads yourself.",
         "",
         "A complaint or case outcome is not, by itself, proof of wrongdoing. The outcome labels are practical groupings of source decision details, not legal advice.",
         "",
